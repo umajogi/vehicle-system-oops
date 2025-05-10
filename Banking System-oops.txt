@@ -1,0 +1,49 @@
+'''Banking System
+Objective: Simulate bank transactions with inheritance.
+
+Base Class: Account (with deposit(), withdraw())
+
+Subclasses: SavingsAccount, CurrentAccount
+
+Each subclass has different withdrawal rules
+
+Create objects with balances, call transaction methods'''
+
+class Account:
+    def __init__(self):
+        self.amount=int(input("enter amount"))
+    def deposit(self):
+        x=1000
+        print("you account is new so your bank balance is",x)
+        self.amount=x+self.amount
+        print("after deposite your bank balance is:",self.amount)
+    def withdraw(self):
+        print("your balance :",self.amount)
+        y=int(input("enter amount to withdraw"))
+        print("after withdraw",self.amount-y)   
+class savingsAccount(Account):
+    def withdraw(self):
+        super().deposit()
+        y=int(input("enter amount to withdraw"))
+        self.amount=self.amount-y
+        print("after withdraw your savings amount is:",self.amount)   
+class currentAccount(Account):
+    def withdraw(self):
+        super().deposit()
+        y=int(input("enter amount to withdraw"))
+        c=0
+        if(y>self.amount):
+            self.amount=self.amount-y
+            print("after withdraw your current amount is:",self.amount)
+            if(self.amount<0):
+                print("your bank balance is low than zero so after deposition of money to your account the remaining amount is reduced")
+        else:
+            self.amount=self.amount-y
+            print("after withdraw your current account balance is",self.amount)
+
+balance1=savingsAccount()
+balance1.withdraw()
+balance2=currentAccount()
+balance2.withdraw()
+
+
